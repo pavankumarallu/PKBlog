@@ -1,0 +1,247 @@
+<!doctype html>
+
+
+<html lang="en">
+{% load static %}
+
+    <head>
+        <title>Pk Blog</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <style type="text/css">
+
+        </style>
+    </head>
+
+    <body>
+        <!-- Header starts -->
+        <header class="main_header">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-survival101">
+            <div class="container">
+              <a class="navbar-brand" href="#">
+                  <h1 style = "font-size:3.5rem;">PK Blogs</h1>
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false"          aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            
+              <div class="collapse navbar-collapse" id="navbarColor02">
+            
+            
+            
+                <form class="form-inline">
+                  <div class="input-group search-box">
+                    <input type="text" class="form-control" placeholder="What are you looking for?" aria-label="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i></button>
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </div>
+    
+</nav>
+
+        </header>
+        <!-- Header ends -->
+
+
+
+
+
+        <!-- two sided blog part starts -->
+        <div class="container-fluid ">
+            <div class="row ">
+                <!-- to get the space form left and right -->
+                <div class="col-xl-10  col-lg-10 col-md-12 col-11 mx-auto my-5">
+                    <div class="row gx-5 mx-sm-auto">
+                        <!-- left side of the blog  -->
+                        <div class="col-lg-8 col-md-11 col-11 mx-auto">
+                            <div class="row gy-5 ">
+
+                                {% block body %}
+
+                                {% endblock body %}
+
+                                
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                    {% if posts.has_previous %}
+                                      <li class="page-item"><a class="page-link" href="?page={{posts.previous_page_number}}">Previous</a></li>
+                                    {% endif %}
+                                      <li class="page-item"><a class="page-link" href="#">{{posts.number}}</a></li>
+                                      
+                                      {% if posts.has_next %}
+                                      <li class="page-item"><a class="page-link" href="?page={{posts.next_page_number}}">Next</a></li>
+                                      {% endif %}
+                                    </ul>
+                                </nav>
+
+
+
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="col-lg-3 col-md-7 col-11  justify-content-end m-lg-0 m-auto ">
+                            <div class="row gy-5 left_div__blog">
+
+                                <!-- about me -->
+                                <div class="col-12  about_me_div shadow">
+                                    <div>
+                                        <img src="{% static 'images/pavan.jpg' %}">
+                                    </div>
+                                    
+                                    <p>Allu Vamsi Pavan Kumar</p>
+                                    <p>Just me, myself and I, exploring the universe of uknownment. I have a heart of love and a interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
+                                </div>
+                                <!-- About me Ends -->
+
+
+                                
+                                
+                                
+                                <div class=" popular_post ">
+                                    <div class="right_div__title py-4 pl-2 shadow">
+                                        <h2>Latest Posts</h2>
+                                    </div>
+                                    <div class="right_sub__div shadow">
+                                        {% for item in posts_lat|slice:":3" %}
+
+
+                                        <div class="row " >
+                                            <div class="col-3  popular_post__img1 py-2 pl-2" style = "background-image: url({{item.thumbnail.url}});background-size: 100% 100%;">
+                                            </div>
+                                            <div class="col-9 shadow" style="padding : 5px;">
+                                                <a href="#"> <h3 style=" font-size: 1.9rem; margin-top:10px;color:#DA0037;">{{ item.title }}</h3></a>
+                                                <p class="text-capitalize" style=" font-size: 1.4rem;">{{item.time_upload}}</p>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                    
+            
+
+                                <!-- advertise -->
+                                <div class=" right_div_post">
+                                    <div class="right_div__title py-4 pl-2 ">
+                                        <h2>Advertise</h2>
+                                    </div>
+                                    <div class="right_sub__div ">
+                                        <div class="adevetise_img bg-light shadow">
+                                            <p>Ads goes here</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <!-- tags -->
+                                <div class=" right_div_post">
+                                    <div class="right_div__title py-4 pl-2 ">
+                                        <h2>Tags</h2>
+                                    </div>
+                                    <div class="tags_main right_sub__div">
+                                        {% for cat in category %}
+                                        <a href="#" class="badge shadow text-capitalize"> {{cat.title}} </a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+
+                                <!-- Follow Me -->
+                                <div class=" right_div_post">
+                                    <div class="right_div__title py-4 pl-2 ">
+                                        <h2>Follow Me</h2>
+                                    </div>
+                                    <div class="right_sub__div d-flex justify-content-around">
+                                        <a href="#"> <i class="fab fa-facebook-square fa-3x" style="color: #DA0037;"></i></a>
+                                        <a href="#"> <i class="fab fa-3x fa-instagram" style="color: #DA0037;"></i></a>
+                                        <a href="#"> <i class="fab fa-3x fa-github-square" style="color: #DA0037;"></i> </a>
+                                        <a href="#"> <i class="fab fa-3x fa-twitter-square" style="color: #DA0037;"></i></a>
+                                        <a href="#"> <i class="fab fa-3x fa-youtube-square" style="color: #DA0037;"></i> </a>
+                                        <a href="#"> <i class="fab fa-3x fa-linkedin" style="color: #DA0037;"></i></a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer>
+            <p class="text-center py-5 bg-light">Copyright ©PK blog</p>
+        </footer>
+        <!-- Optional JavaScript -->
+        <!-- Popper.js first, then Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+        const like = document.getElementById('like_btn');
+        const singleClick = () => {
+            like.style.fontWeight = 'bold';
+            like.style.background = '#bbe1fa';
+            like.style.color = '#1b262c';
+            like.innerHTML = "✓ Liked";
+        }
+        const doubleClick = () => {
+            like.style.fontWeight = 'normal';
+            like.style.background = '#3282b8';
+            like.style.color = '#fff';
+            like.innerHTML = "Like";
+        }
+        var clickCount = 0;
+        like.addEventListener('click', function() {
+            clickCount++;
+            if (clickCount === 1) {
+                singleClickTimer = setTimeout(function() {
+                    clickCount = 0;
+                    singleClick();
+                }, 400);
+            } else if (clickCount === 2) {
+                clearTimeout(singleClickTimer);
+                clickCount = 0;
+                doubleClick();
+            }
+        }, false);
+        // show and hide the replies
+        const reply = (rep) => {
+            console.log('hi');
+            // debugger;
+            var res = document.getElementById(rep);
+            console.log(res);
+            if (res.className == "replies") {
+                res.className = "thapa_show";
+                res.style.WebkitTransition = 'all 0.3s ease';
+                // res.style.transition = 'all 0.3s ease';
+                // console.log(thapa_show);
+            } else if (res.className == 'thapa_show') {
+                // res.className = " ";
+                console.log('thapa show');
+                res.className = "replies";
+            }
+        }
+        </script>
+        <script>
+          $(document).ready(function(){
+            $('.btn').click(function(){
+              $('.items').toggleClass("show");
+              $('ul li').toggleClass("hide");
+            });
+          });
+       </script>
+    </body>
+
+</html>
