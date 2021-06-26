@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Post,Category
+from django.http import Http404
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.db.models import Q
 
@@ -37,4 +38,39 @@ def search(request):
         
     }
     return render(request,'all.html',params)
+
+def post(request, id, slug):
+    
+    try:
+        post = Post.objects.get(pk=id, slug=slug)
+    except:
+        raise Http404("Post Does Not Exist")
+    post.save()
+    parms = {
+	
+	'post':post,
+    'posts_lat' : Post.objects.all(),
+    'category' : Category.objects.all(),
+	
+	}
+    return render(request, 'blog-single.html', parms)
+
+    
+    
+    
+        
+        
+		
+  
+	
+			
+
+	
+
+	
+	
+	
+	
+	
+	
 

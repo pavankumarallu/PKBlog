@@ -27,8 +27,7 @@
         </div>
         
 
-        <button class="left_div__reply">Read the Article</button>
-        
+        <button class="left_div__reply"><a href="{% url 'post' item.id item.slug %}" style = "text-decoration: none; color:#fff;">Read Full Article</a></button>
         <div class="d-flex justify-content-between left_div_btns">
             <div>
                 <button class="left_div__like" id="like_btn"><i class="fa fa-thumbs-up"></i>Like</button>

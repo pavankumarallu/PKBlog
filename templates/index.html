@@ -27,7 +27,7 @@
         </div>
         <p><span class="font-weight-bold">PK Blogs</span> {{ item.overview }} </p>
 
-        <button class="left_div__reply"><a href="#" style = "text-decoration: none; color:#fff;">Read Full Article</a></button>
+        <button class="left_div__reply"><a href="{% url 'post' item.id item.slug %}" style = "text-decoration: none; color:#fff;">Read Full Article</a></button>
         
         <div class="d-flex justify-content-between left_div_btns">
             <div>

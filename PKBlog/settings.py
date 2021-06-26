@@ -129,48 +129,57 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-from ckeditor.configs import DEFAULT_CONFIG
 
 CKEDITOR_UPLOAD_PATH = "blog/uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
-CKEDITOR_THUMBNAIL_SIZE = (300, 300)
+CKEDITOR_THUMBNAIL_SIZE = (200, 300)
 CKEDITOR_IMAGE_QUALITY = 40
 CKEDITOR_BROWSE_SHOW_DIRS = True
 CKEDITOR_ALLOW_NONIMAGE_FILES = True
-
-CUSTOM_TOOLBAR = [
-    {
-        "name": "document",
-        "items": [
-            "Styles", "Format", "Bold", "Italic", "Underline", "Strike", "-",
-            "TextColor", "BGColor",  "-",
-            "JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock",
-        ],
-    },
-    {
-        "name": "widgets",
-        "items": [
-            "Undo", "Redo", "-",
-            "NumberedList", "BulletedList", "-",
-            "Outdent", "Indent", "-",
-            "Link", "Unlink", "-",
-            "Image", "CodeSnippet", "Table", "HorizontalRule", "Smiley", "SpecialChar", "-",
-        ],
-    },
-]
-
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
 CKEDITOR_CONFIGS = {
-    "default": DEFAULT_CONFIG,
-    "my-custom-toolbar": {
-        "skin": "moono-lisa",
-        "toolbar": CUSTOM_TOOLBAR,
-        "toolbarGroups": None,
-        "extraPlugins": ",".join(["image2", "codesnippet"]),
-        "removePlugins": ",".join(["image"]),
-        "codeSnippet_theme": "xcode",
+    'default': {
+        'toolbar': 'full',
+        'extraPlugins': ','.join(
+            [
+                'codesnippet',
+            ]),
     },
 }
 
+# CUSTOM_TOOLBAR = [
+    # {
+        # "name": "document",
+        # "items": [
+            # "Styles", "Format", "Bold", "Italic", "Underline", "Strike", "-",
+            # "TextColor", "BGColor",  "-",
+            # "JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock",
+        # ],
+    # },
+    # {
+        # "name": "widgets",
+        # "items": [
+            # "Undo", "Redo", "-",
+            # "NumberedList", "BulletedList", "-",
+            # "Outdent", "Indent", "-",
+            # "Link", "Unlink", "-",
+            # "Image", "CodeSnippet", "Table", "HorizontalRule", "Smiley", "SpecialChar", "-",
+        # ],
+    # },
+# ]
+# 
+# CKEDITOR_CONFIGS = {
+    # "default": DEFAULT_CONFIG,
+    # "my-custom-toolbar": {
+        # "skin": "moono-lisa",
+        # "toolbar": 'special',
+        # "toolbarGroups": None,
+        # "extraPlugins": ",".join(["image2", "codesnippet"]),
+        # "removePlugins": ",".join(["image"]),
+        # "codeSnippet_theme": "xcode",
+    # },
+# }
+# 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
