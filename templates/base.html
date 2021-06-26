@@ -33,9 +33,9 @@
             
             
             
-                <form class="form-inline">
+                <form action = "{% url 'search' %}" class="form-inline" method = "get">
                   <div class="input-group search-box">
-                    <input type="text" class="form-control" placeholder="What are you looking for?" aria-label="Search for...">
+                    <input type="text" class="form-control" placeholder="What are you looking for?" aria-label="Search for..." name="q">
                     <span class="input-group-btn">
                       <button class="btn btn-secondary" type="submit"><i class="fa fa-search"></i></button>
                     </span>
